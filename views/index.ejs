@@ -4,31 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guia Perguntas</title>
+
+    <!-- no css não precisa colocar a pasta public     -->
+    <!-- não pode esquecer de colocar o / antes do css -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Arquivo do bootstrap -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Guia de perguntas</h1>
-    <hr>
-    <h3>Lista de perguntas</h3>
-
-    <p>Nome: <%= nome %></p>
-    <p>Linguagem: <%= lang %></p>
-    <p>Empresa: <%= empresa %></p>
-    <p>Inscritos: <%= inscritos %></p>
-
-
-    <% if(msg == true){ %>
-        <h3>Isso é uma msg de erro!</h3>
-    <% } else {%>    
-        <h3>Nenhum erro!</h3>
-    <% }%>
-
-
-    <!-- Para cada elemento dentro do foreach execute uma função -->
-    <!-- Para cada elemento recebe um produto -->
-    <% produtos.forEach(function(produto){ %>
-        <hr>
-        <h4><%= produto.nome %></h4>
-        <h5><%= produto.preco %></h5>
-    <%}) %>
+    <h1>Estilo do bootstrap</h1>
 </body>
+
+<!-- Manter os imports na mesma ordem -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="/js/bootstrap.min.js"></script>
 </html>

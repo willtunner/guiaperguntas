@@ -1,23 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia Perguntas</title>
+<%- include ("./partials/header.ejs") %>
 
-    <!-- no css não precisa colocar a pasta public     -->
-    <!-- não pode esquecer de colocar o / antes do css -->
-    <link rel="stylesheet" href="/css/style.css">
-
-    <!-- Arquivo do bootstrap -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-</head>
 <body>
-    <h1>Estilo do bootstrap</h1>
+    <%- include ("./partials/navbar.ejs") %>
+
+    <div class="container">
+        <hr>
+        <h1> Perguntas </h1>
+        <hr>
+        <a href="/perguntar" class="btn btn-primary">Perguntar</a>
+        <hr>
+        <% perguntas.forEach(pergunta => { %>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <h3><%= pergunta.titulo %></h3>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary">Responder</button>
+                </div>
+            </div>
+        <%}) %>
+    </div>
 </body>
 
-<!-- Manter os imports na mesma ordem -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="/js/bootstrap.min.js"></script>
-</html>
+<!-- Incluir Partials Footer -->
+<%- include ("./partials/footer.ejs") %>

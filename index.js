@@ -62,18 +62,32 @@ app.post("/salvarpergunta", (req, res) =>{
 //pega o id para fazer o select e buscar a pergunta
 app.get("/pergunta/:id", (req, res) => {
     var id = req.params.id;// Pega o id da pergunta passada pela rota
+    
     Pergunta.findOne({// Faz a busca de 1 registro no model pergunta
         where: {id: id}// Quando o id for igual o id passado
     }).then( pergunta => {// se der tudo certo
         if(pergunta != undefined){// Verifica se veio algo diferente de nulo, encontrada
-            res.render("pergunta", {// Chama a página de pergunta
-                pergunta: pergunta // passa a pergunta para a view
-            }); 
+            
+            // Busca todas as respostas dessa pergunta no banco
+            Resposta.findAll({
+                where: {perguntaId: pergunta.id}, // Quando o id da pergunta for igual o id pergunta
+                order: [['id','DESC']]
+            }).then(respostas => {
+                res.render("pergunta",{
+                    pergunta: pergunta,
+                    respostas: respostas
+                });
+            });
+
+
+            // res.render("pergunta", {// Chama a página de pergunta
+            //     pergunta: pergunta // passa a pergunta para a view
+            // }); 
         }else{// Não foi encontrada
             res.redirect("/");// Redireciona para a página inicial caso de erro ou não encontra
         }
-    })
-});
+    });
+})
 
 // Rota para a resposta
 app.post("/responder",(req, res) =>{

@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");// Importa o body parser
 const connection = require('./database/database');// Importa a conexão com o banco
-const Pergunta = require('./database/Pergunta');// Model pergunta
+const Pergunta = require('./database/Pergunta');// Model Pergunta
+const Resposta = require('./database/Resposta');// Model Resposta
 
 // Database 
 connection
@@ -72,6 +73,21 @@ app.get("/pergunta/:id", (req, res) => {
             res.redirect("/");// Redireciona para a página inicial caso de erro ou não encontra
         }
     })
+});
+
+// Rota para a resposta
+app.post("/responder",(req, res) =>{
+    // Pega os valores do formulário
+    var corpo = req.body.corpo;
+    var perguntaId = req.body.pergunta;
+
+    // Inseri no banco
+    Resposta.create({
+        corpo: corpo,
+        perguntaId: perguntaId
+    }).then(() =>{
+        res.redirect("/pergunta/"+perguntaId); // Redireciona para a pergunta
+    });
 });
 
 app.listen(4000,() => {console.log("App rodando!");});
